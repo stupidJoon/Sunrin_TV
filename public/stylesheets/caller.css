@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#row1 {
+    flex: 9;
+}
+
+#row2 {
+    flex: 1;
+    flex-direction: row;
+}
+
+#screen {
+    width: 70%;
+    height: 100%;
+}
+
+#chatConatiner {
+    width: 30%;
+    height: 100%;
+}
