@@ -18,6 +18,10 @@ module.exports.on = (io) => {
       console.log('\nSession:', session_id, '\nCaller:', sessions[session_id]['caller'].id, 'Callee:', sessions[session_id]['callee'].length);
     });
 
+    socket.on('getSessionCalles', (sessionId) => {
+      socket.emit('sessionCalles', sessions[sessionId]['callee']);
+    });
+
     socket.on('disconnect', () => {
       Object.keys(sessions).forEach((value1, index) => {
         if (sessions[value1]['caller'] == socket) {

@@ -13,6 +13,7 @@ const socket = io.connect('');
 
 let sessionType;
 let mediaStream;
+let callees;
 
 function makeAlert(msg) {
   $("#alertWrapper").empty();
@@ -21,6 +22,12 @@ function makeAlert(msg) {
 function makeError(msg) {
   $("#alertWrapper").empty();
   return '<div class="alert alert-danger alert-dismissible fade show w80 m-auto" id="formRequireAlert" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+}
+function startWebRTC() {
+  socket.on('sessionCalles', (callees) => {
+    console.log(callees);
+  });
+  socket.emit('getSessionCalles', SESSION_ID);
 }
 
 socket.on('session_type', (sessionType) => {
@@ -38,7 +45,7 @@ $(document).ready(() => {
     navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((mediaStream) => {
       this.mediaStream = mediaStream;
     }).catch((e) => {
-      $("#alertWrapper").append(makeError(e, '에러가 발생했습니다. 다시 시도해주세요'));
+      $("#alertWrapper").append(makeError(e + ' 에러가 발생했습니다. 다시 시도해주세요'));
     })
   });
   $("#saveModalConfigButton").click(() => {
@@ -54,6 +61,7 @@ $(document).ready(() => {
     else {
       $("#alertWrapper").empty();
       $("#session_init").modal('hide');
+      startWebRTC();
     }
   });
 });
