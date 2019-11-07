@@ -33,7 +33,9 @@ $(document).ready(() => {
   $("#sessionInputScreenSelectButton").click(() => {
     navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((mediaStream) => {
       this.mediaStream = mediaStream;
-    });
+    }).catch((e) => {
+      console.error(e);
+    })
   });
   $("#saveModalConfigButton").click(() => {
     console.log("CLICKED")
