@@ -18,6 +18,10 @@ function makeAlert(msg) {
   $("#alertWrapper").empty();
   return '<div class="alert alert-warning alert-dismissible fade show w80 m-auto" id="formRequireAlert" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 }
+function makeError(msg) {
+  $("#alertWrapper").empty();
+  return '<div class="alert alert-danger alert-dismissible fade show w80 m-auto" id="formRequireAlert" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+}
 
 socket.on('session_type', (sessionType) => {
   this.sessionType = sessionType;
@@ -34,11 +38,10 @@ $(document).ready(() => {
     navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((mediaStream) => {
       this.mediaStream = mediaStream;
     }).catch((e) => {
-      console.error(e);
+      makeError(e, '에러가 발생했습니다. 다시 시도해주세요');
     })
   });
   $("#saveModalConfigButton").click(() => {
-    console.log("CLICKED")
     if ($("#sessionTitle").val().trim() == '') {
       $("#alertWrapper").append(makeAlert('세션 제목을 적어주세요!'));
     }
