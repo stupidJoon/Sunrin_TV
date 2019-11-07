@@ -1,0 +1,53 @@
+body {
+  padding-top: 60px;
+  overflow-x: hidden;
+}
+
+.fullScreen {
+  width: 100vw;
+  height: 90vh;
+}
+
+.videoStreaming {
+  width: 80%;
+  height: 100%;
+}
+
+.w100h70 {
+  width: 100%;
+  height: 70%;
+}
+
+.w100h20 {
+  width: 100%;
+  height: 20%;
+}
+
+.w80h100 {
+  width: 80%;
+  height: 100%;
+}
+
+.w20h100 {
+  width: 20%;
+  height: 100%;
+}
+
+.w80 {
+  width: 80%;
+}
+
+#liveChat {
+  width: 20vw;
+  height: 100%;
+  background-color: lightgray;
+  float: right;
+}
+
+#sendChatDiv {
+  float: right;
+}
+
+#formRequireAlert {
+  z-index: 999999;
+}

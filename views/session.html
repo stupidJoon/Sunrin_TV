@@ -1,53 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-  <link rel="stylesheet" href="../stylesheets/session.css">
-  <script src="../javascripts/session.js"></script>
-  <title>Document</title>
-</head>
-<body>
-  <!-- Modal -->
-  <div class="modal fade" id="session_init" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="sessionSetting">세션 설정</h5>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="sessionTitle">세션 제목</label>
-              <input type="text" class="form-control" id="sessionTitle">
-            </div>
-            <div class="form-group">
-              <label for="sessionDetail">세션 설명</label>
-              <textarea class="form-control" id="sessionDetail" rows="3"></textarea>
-            </div>
-          </form>
-          <label for="sessionInputScreenSelectButton">세션 송출 화면 선택</label>
-          <button class="btn btn-secondary btn-block" id="sessionInputScreenSelectButton">선택</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="saveModalConfigButton">설정 저장</button>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <link rel="stylesheet" href="../stylesheets/session.css">
+    <script src="../javascripts/session.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Modal -->
+    <div class="modal fade" id="session_init" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="sessionSetting">세션 설정</h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="sessionTitle">세션 제목</label>
+                <input type="text" class="form-control" id="sessionTitle">
+              </div>
+              <div class="form-group">
+                <label for="sessionDetail">세션 설명</label>
+                <textarea class="form-control" id="sessionDetail" rows="3"></textarea>
+              </div>
+            </form>
+            <label for="sessionInputScreenSelectButton">세션 송출 화면 선택</label>
+            <button class="btn btn-secondary btn-block" id="sessionInputScreenSelectButton">선택</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="saveModalConfigButton">설정 저장</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">Sunrin TV</a>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" 
+              aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/30x30">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="container-fluid p-0 fullScreen">
+      <div class="row m-0 w100h70">
+        
+          <video class="videoStreaming" controls playsinline autoplay></video>
+          <div id="liveChat"></div>
+        
+      </div>
+      <div class="row m-0 p-0 w100h20">
+        <div class="m-0 p-3 w80h100" id="sessionInfo">
+          <h1>TEST TITLE</h1>
+          <p> TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS...
+              TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS...
+              TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS... TEST DETAILS...
+          </p>
+        </div>
+        <div class="w20h100" id="sendChatDiv">
+          <textarea class="form-control mt-3 mb-3" id="sessionDetail" rows="3"></textarea>
+          <button type="button" class="btn btn-outline-secondary btn-sm btn-block" id="">채팅 보내기</button>
+        </div>
+      </div>
+      <div class="row text-center m-0 mt-3" id="alertWrapper"></div>
+    </div>
+  </body>
 </html>

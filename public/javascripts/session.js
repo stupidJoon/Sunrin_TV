@@ -14,6 +14,11 @@ const socket = io.connect('');
 let sessionType;
 let mediaStream;
 
+function makeAlert(msg) {
+  $("#alertWrapper").empty();
+  return '<div class="alert alert-warning alert-dismissible fade show w80 m-auto" id="formRequireAlert" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+}
+
 socket.on('session_type', (sessionType) => {
   this.sessionType = sessionType;
   if (sessionType == 'caller') {
@@ -29,5 +34,21 @@ $(document).ready(() => {
     navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((mediaStream) => {
       this.mediaStream = mediaStream;
     });
+  });
+  $("#saveModalConfigButton").click(() => {
+    console.log("CLICKED")
+    if ($("#sessionTitle").val().trim() == '') {
+      $("#alertWrapper").append(makeAlert('세션 제목을 적어주세요!'));
+    }
+    else if ($("#sessionDetail").val().trim() == '') {
+      $("#alertWrapper").append(makeAlert('세션 설명을 적어주세요!'));
+    }
+    else if (this.mediaStream == undefined) {
+      $("#alertWrapper").append(makeAlert('세션 송출 화면을 선택해주세요!'));
+    }
+    else {
+      $("#alertWrapper").empty();
+      $("#session_init").modal('hide');
+    }
   });
 });
