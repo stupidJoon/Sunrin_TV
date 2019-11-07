@@ -19,6 +19,7 @@ module.exports.on = (io) => {
     });
 
     socket.on('getSessionCalles', (sessionId) => {
+      console.log(sessions[sessionId]);
       socket.emit('sessionCalles', 'test');
     });
 
