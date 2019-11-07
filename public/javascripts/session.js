@@ -12,6 +12,7 @@ const SESSION_ID = location.href.split('/')[4];
 const socket = io.connect('');
 
 let sessionType;
+let mediaStream;
 
 socket.on('session_type', (sessionType) => {
   this.sessionType = sessionType;
@@ -21,13 +22,12 @@ socket.on('session_type', (sessionType) => {
   console.log(sessionType);
 });
 
-socket.emit('join_session', SESSION_ID);
-
 $(document).ready(() => {
   console.log(SESSION_ID);
+  socket.emit('join_session', SESSION_ID);
   $("#sessionInputScreenSelectButton").click(() => {
     navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((mediaStream) => {
-      
-    })
+      this.mediaStream = mediaStream;
+    });
   });
 });
