@@ -38,7 +38,7 @@ $(document).ready(() => {
     navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((mediaStream) => {
       this.mediaStream = mediaStream;
     }).catch((e) => {
-      makeError(e, '에러가 발생했습니다. 다시 시도해주세요');
+      $("#alertWrapper").append(makeError(e, '에러가 발생했습니다. 다시 시도해주세요'));
     })
   });
   $("#saveModalConfigButton").click(() => {
