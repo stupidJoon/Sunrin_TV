@@ -19,7 +19,7 @@ module.exports.on = (io) => {
     });
 
     socket.on('getSessionCalles', (sessionId) => {
-      console.log(sessions[sessionId]);
+      console.log(sessions[sessionId]['callee'].map((value) => { return value.id; }));
       socket.emit('sessionCalles', 'test');
     });
 

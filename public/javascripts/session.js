@@ -24,7 +24,6 @@ function makeError(msg) {
   return '<div class="alert alert-danger alert-dismissible fade show w80 m-auto" id="formRequireAlert" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 }
 function startWebRTC() {
-  console.log("STARTWEBRTC")
   socket.on('sessionCalles', (callees) => {
     console.log(callees);
   });
