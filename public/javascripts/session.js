@@ -170,6 +170,7 @@ function startWebRTCForCallee() {
 }
 
 $(document).ready(() => {
+  $("#sessionCode").val(SESSION_ID);
   console.log('My Sesesion Id:', SESSION_ID);
   socket.emit('join_session', SESSION_ID);
   $("#sessionInputScreenSelectButton").click(() => {
