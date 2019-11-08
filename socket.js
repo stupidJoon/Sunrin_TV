@@ -40,7 +40,7 @@ module.exports.on = (io) => {
 
     socket.on('sendAnswer', (answerData) => {
       console.log('Send Answer:', answerData['answer']);
-      sessions[answerData['sessionId']]['caller'].emit('answer', { index: sessions[answerData['sessionId']].findIndex((element) => { return element == socket; }), answer: answerData['answer'] });
+      sessions[answerData['sessionId']]['caller'].emit('answer', { index: sessions[answerData['sessionId']]['callee'].findIndex((element) => { return element == socket; }), answer: answerData['answer'] });
     });
 
     socket.on('disconnect', () => {
