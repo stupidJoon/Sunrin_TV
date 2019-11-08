@@ -25,7 +25,7 @@ socket.on('session_type', (sessionType) => {
   else {
     startWebRTCForCallee();
   }
-  console.log(sessionType);
+  console.log('My Session Type:', sessionType);
 });
 
 function makeAlert(msg) {
@@ -143,7 +143,7 @@ function startWebRTCForCallee() {
 }
 
 $(document).ready(() => {
-  console.log(SESSION_ID);
+  console.log('My Sesesion Id:', SESSION_ID);
   socket.emit('join_session', SESSION_ID);
   $("#sessionInputScreenSelectButton").click(() => {
     navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((stream) => {
