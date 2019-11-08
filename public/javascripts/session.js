@@ -54,7 +54,7 @@ function startWebRTCForCaller() {
       };
     }
   });
-  socket.emit('getNumberOfCallee', null);
+  socket.emit('getNumberOfCallee', SESSION_ID);
 }
 function startWebRTCForCallee() {
   let pc = new RTCPeerConnection(RTC_CONFIGURATION);
