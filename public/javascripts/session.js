@@ -14,6 +14,9 @@ const socket = io.connect('');
 let sessionType;
 let mediaStream;
 
+let caller = [];
+let callee;
+
 socket.on('session_type', (sessionType) => {
   this.sessionType = sessionType;
   if (sessionType == 'caller') {
@@ -34,7 +37,6 @@ function makeError(msg) {
   return '<div class="alert alert-danger alert-dismissible fade show w80 m-auto" id="formRequireAlert" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 }
 function startWebRTCForCaller() {
-  let caller = [];
   socket.on('numberOfCallee', (numberOfCallee) => {
     console.log("Number Of Calle:", numberOfCallee);
     for (let i = 0; i < numberOfCallee; i++) {
@@ -107,6 +109,7 @@ function startWebRTCForCallee() {
         });
       });
       socket.emit('requestOffer', SESSION_ID);
+      callee = pc;
     }
     else {
       let pc = new RTCPeerConnection(RTC_CONFIGURATION);
@@ -133,6 +136,7 @@ function startWebRTCForCallee() {
           socket.emit('sendAnswer', { answer: pc.localDescription, sessionId: SESSION_ID });
         });
       });
+      callee = pc;
     }
   });
   socket.emit('isCallerActive', SESSION_ID);
@@ -167,4 +171,12 @@ $(document).ready(() => {
       startWebRTCForCaller();
     }
   });
+});
+$(window).unload(() => {
+  if (callee != undefined) {
+    callee.close();
+  }
+  else {
+    caller.forEach((value) => { value.close(); })
+  }
 });
