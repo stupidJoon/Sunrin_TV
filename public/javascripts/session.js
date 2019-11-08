@@ -77,7 +77,7 @@ function startWebRTCForCallee() {
   pc.onicecandidate = (event) => {
     if (event.candidate != null) {
       socket.emit('sendCandidateToCaller', { candidate: event.candidate, sessionId: SESSION_ID });
-      console.log('Candidate Sent:', { index: i, candidate: event.candidate });
+      console.log('Candidate Sent:', { candidate: event.candidate });
     }
   };
   socket.on('candidateToCallee', (candidate) => {
