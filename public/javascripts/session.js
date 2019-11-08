@@ -43,6 +43,7 @@ function makeError(msg) {
 }
 function startWebRTCForCaller() {
   socket.on('numberOfCallee', (numberOfCallee) => {
+    console.log("Number Of Calle:", numberOfCallee);
     for (let i = 0; i < numberOfCallee; i++) {
       let pc = new RTCPeerConnection(RTC_CONFIGURATION);
       pc.addStream(mediaStream);
