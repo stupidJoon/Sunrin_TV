@@ -62,8 +62,16 @@ module.exports.on = (io) => {
     socket.on('callerDisconnected', (sessionId) => {
       sessions[sessionId]['caller'] = undefined;
       sessions[sessionId]['callee'].forEach((value, index) => {
-        // 세션 종류 알려주기 하기
+        value.emit('callerDisconnected', null);
       });
+    });
+
+    socket.on('calleeDisconnected', (calleeDisconnectedData) => {
+      let indexOfCallee = getIndexOfCallee(calleeDisconnectedData['sessionId'], calleeDisconnectedData['callee']);
+      if (sessions[calleeDisconnectedData['sessionId']]['caller'] != undefined) {
+        sessions[calleeDisconnectedData['sessionId']]['caller'].emit('calleeDisconnected', indexOfCallee);
+      }
+      sessions[calleeDisconnectedData['sessionId']]['callee'].splice(indexOfCallee);
     });
   });
 }

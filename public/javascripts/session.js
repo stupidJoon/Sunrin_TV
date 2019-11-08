@@ -80,6 +80,9 @@ function startWebRTCForCaller() {
     console.log("MYPC:", pc);
     caller.push(pc);
   });
+  socket.on('calleeDisconnected', (indexOfCallee) => {
+    caller.splice(indexOfCallee);
+  });
   socket.emit('getNumberOfCallee', SESSION_ID);
 }
 function startWebRTCForCallee() {
@@ -139,6 +142,9 @@ function startWebRTCForCallee() {
       });
       callee = pc;
     }
+  });
+  socket.on('callerDisconnected', () => {
+    callee = undefined;
   });
   socket.emit('isCallerActive', SESSION_ID);
 }
