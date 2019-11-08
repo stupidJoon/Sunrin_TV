@@ -61,7 +61,7 @@ function startWebRTCForCaller() {
     caller[candidateData['index']].addIceCandidate(candidateData['candidate']);
   });
   socket.on('answer', (answerData) => {
-    console.log('Answer Recieved:', answerData['answer']);
+    console.log('Answer Recieved:', answerData['answer'], caller[answerData['index']].signalingState);
     caller[answerData['index']].setRemoteDescription(answerData['answer']);
   });
   socket.on('requestOffer', (indexOfCallee) => {
