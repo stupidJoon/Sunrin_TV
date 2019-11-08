@@ -62,33 +62,80 @@ function startWebRTCForCaller() {
     console.log('Answer Recieved:', answerData['answer']);
     caller[answerData['index']].setRemoteDescription(answerData['answer']);
   });
+  socket.on('requestOffer', (indexOfCallee) => {
+    let pc = new RTCPeerConnection(RTC_CONFIGURATION);
+    pc.onicecandidate = (event) => {
+      if (event.candidate != null) {
+        socket.emit('sendCandidateToCallee', { index: indexOfCallee, candidate: event.candidate, sessionId: SESSION_ID });
+        console.log('Candidate Sent:', { index: indexOfCallee, candidate: event.candidate });
+      }
+    };
+    pc.createOffer().then((offer) => {
+      return pc.setLocalDescription(offer);
+    }).then(() => {
+      socket.emit('sendOffer', { index: indexOfCallee, offer: pc.localDescription, sessionId: SESSION_ID });
+    });
+    caller.push(pc);
+  });
   socket.emit('getNumberOfCallee', SESSION_ID);
 }
 function startWebRTCForCallee() {
-  let pc = new RTCPeerConnection(RTC_CONFIGURATION);
-  pc.onicecandidate = (event) => {
-    if (event.candidate != null) {
-      socket.emit('sendCandidateToCaller', { candidate: event.candidate, sessionId: SESSION_ID });
-      console.log('Candidate Sent:', { candidate: event.candidate });
+  socket.on('callerActive', (isCallerActive) => {
+    if (isCallerActive == true) {
+      let pc = new RTCPeerConnection(RTC_CONFIGURATION);
+      pc.onicecandidate = (event) => {
+        if (event.candidate != null) {
+          socket.emit('sendCandidateToCaller', { candidate: event.candidate, sessionId: SESSION_ID });
+          console.log('Candidate Sent:', { candidate: event.candidate });
+        }
+      };
+      pc.onaddstream = (event) => {
+        $(".videoStreaming")[0].srcObject = event.stream;
+        console.log("Stream Added:", event.stream);
+      };
+      socket.on('candidateToCallee', (candidate) => {
+        console.log('Candidate Received:', candidate);
+        pc.addIceCandidate(candidate);
+      });
+      socket.on('offer', (offer) => {
+        console.log('Offer Recieved:', offer);
+        pc.setRemoteDescription(offer);
+        pc.createAnswer().then((answer) => {
+          return pc.setLocalDescription(answer);
+        }).then(() => {
+          socket.emit('sendAnswer', { answer: pc.localDescription, sessionId: SESSION_ID });
+        });
+      });
+      socket.emit('requestOffer', SESSION_ID);
     }
-  };
-  pc.onaddstream = (event) => {
-    $(".videoStreaming")[0].srcObject = event.stream;
-    console.log("Stream Added:", event.stream);
-  };
-  socket.on('candidateToCallee', (candidate) => {
-    console.log('Candidate Received:', candidate);
-    pc.addIceCandidate(candidate);
+    else {
+      let pc = new RTCPeerConnection(RTC_CONFIGURATION);
+      pc.onicecandidate = (event) => {
+        if (event.candidate != null) {
+          socket.emit('sendCandidateToCaller', { candidate: event.candidate, sessionId: SESSION_ID });
+          console.log('Candidate Sent:', { candidate: event.candidate });
+        }
+      };
+      pc.onaddstream = (event) => {
+        $(".videoStreaming")[0].srcObject = event.stream;
+        console.log("Stream Added:", event.stream);
+      };
+      socket.on('candidateToCallee', (candidate) => {
+        console.log('Candidate Received:', candidate);
+        pc.addIceCandidate(candidate);
+      });
+      socket.on('offer', (offer) => {
+        console.log('Offer Recieved:', offer);
+        pc.setRemoteDescription(offer);
+        pc.createAnswer().then((answer) => {
+          return pc.setLocalDescription(answer);
+        }).then(() => {
+          socket.emit('sendAnswer', { answer: pc.localDescription, sessionId: SESSION_ID });
+        });
+      });
+    }
   });
-  socket.on('offer', (offer) => {
-    console.log('Offer Recieved:', offer);
-    pc.setRemoteDescription(offer);
-    pc.createAnswer().then((answer) => {
-      return pc.setLocalDescription(answer);
-    }).then(() => {
-      socket.emit('sendAnswer', { answer: pc.localDescription, sessionId: SESSION_ID });
-    });
-  });
+  socket.emit('isCallerActive', SESSION_ID);
 }
 
 $(document).ready(() => {

@@ -2,6 +2,10 @@ var exports = module.exports = {};
 
 let sessions = {};
 
+function getIndexOfCallee(sessionId, callee) {
+  return sessions[sessionId]['callee'].findIndex((element) => { return element == callee; })
+}
+
 module.exports.on = (io) => {
   io.on('connection', (socket) => {
     console.log('Socket Connected', socket.id);
@@ -30,7 +34,7 @@ module.exports.on = (io) => {
 
     socket.on('sendCandidateToCaller', (candidateData) => {
       console.log('Send Candidate To Caller:', candidateData['candidate']);
-      sessions[candidateData['sessionId']]['caller'].emit('candidateToCaller', { index: sessions[candidateData['sessionId']]['callee'].findIndex((element) => { return element == socket; }), candidate: candidateData['candidate']});
+      sessions[candidateData['sessionId']]['caller'].emit('candidateToCaller', { index: getIndexOfCallee(candidateData['sessionId'], socket), candidate: candidateData['candidate']});
     });
 
     socket.on('sendOffer', (offerData) => {
@@ -40,7 +44,15 @@ module.exports.on = (io) => {
 
     socket.on('sendAnswer', (answerData) => {
       console.log('Send Answer:', answerData['answer']);
-      sessions[answerData['sessionId']]['caller'].emit('answer', { index: sessions[answerData['sessionId']]['callee'].findIndex((element) => { return element == socket; }), answer: answerData['answer'] });
+      sessions[answerData['sessionId']]['caller'].emit('answer', { index: getIndexOfCallee(answerData['sessionId'], socket), answer: answerData['answer'] });
+    });
+
+    socket.on('isCallerActive', (sessionId) => {
+      socket.emit('callerActive', sessions[sessionId]['caller'] != undefined);
+    });
+
+    socket.on('requestOffer', (sessionId) => {
+      sessions[sessionId]['caller'].emit('requestOffer', getIndexOfCallee(sessionId, socket));
     });
 
     socket.on('disconnect', () => {
