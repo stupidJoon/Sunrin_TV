@@ -71,6 +71,10 @@ module.exports.on = (io) => {
         value.emit('titleAndDetail', titleAndDetail);
       });
     });
+    
+    socket.on('titleAndDetailToCallee', (data) => {
+      sessions[data['sessionId']]['callee'][data['index']].emit('titleAndDetail', data);
+    });
 
     socket.on('disconnect', () => {
       for (let [sessionId, session] of Object.entries(sessions)) {

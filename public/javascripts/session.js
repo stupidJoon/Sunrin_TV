@@ -70,6 +70,7 @@ function startWebRTCForCaller() {
     caller[answerData['index']].setRemoteDescription(answerData['answer']);
   });
   socket.on('requestOffer', (indexOfCallee) => {
+    socket.emit('titleAndDetailToCallee', { sessionId: SESSION_ID, title: $("#sessionTitleInput").val(), detail: $("#sessionDetailInput").val(), index: indexOfCallee });
     let pc = new RTCPeerConnection(RTC_CONFIGURATION);
     pc.addStream(mediaStream);
     pc.onicecandidate = (event) => {
@@ -142,6 +143,10 @@ function startWebRTCForCallee() {
       socket.on('candidateToCallee', (candidate) => {
         console.log('Candidate Received:', candidate);
         pc.addIceCandidate(candidate);
+      });
+      socket.on('titleAndDetail', (titleAndDetail) => {
+        $("#sessionTitle").text(titleAndDetail['title']);
+        $("#sessionDetail").text(titleAndDetail['detail']);
       });
       socket.on('offer', (offer) => {
         console.log('Offer Recieved:', offer);
