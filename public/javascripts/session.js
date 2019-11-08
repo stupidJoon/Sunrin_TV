@@ -13,7 +13,25 @@ const socket = io.connect('');
 
 let sessionType;
 let mediaStream;
-let callees;
+
+socket.on('session_type', (sessionType) => {
+  this.sessionType = sessionType;
+  if (sessionType == 'caller') {
+    $("#session_init").modal({ backdrop: 'static', keyboard: false });
+  }
+  else {
+    startWebRTCForCallee();
+  }
+  console.log(sessionType);
+});
+socket.on('candidate', (data) => {
+  console.log('Received Sent:', data['candidate']);
+  callers[data['id']].addIceCandidate(data['candidate']);
+});
+socket.on('answer', (data) => {
+  console.log('Answer Recieved:', data);
+  callers[data['id']].setRemoteDescription(data['answer']);
+});
 
 function makeAlert(msg) {
   $("#alertWrapper").empty();
@@ -23,20 +41,28 @@ function makeError(msg) {
   $("#alertWrapper").empty();
   return '<div class="alert alert-danger alert-dismissible fade show w80 m-auto" id="formRequireAlert" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 }
-function startWebRTC() {
-  socket.on('sessionCalles', (callees) => {
-    console.log(callees);
+function startWebRTCForCaller() {
+  socket.on('numberOfCallee', (numberOfCallee) => {
+    for (let i = 0; i < numberOfCallee; i++) {
+      let pc = new RTCPeerConnection(RTC_CONFIGURATION);
+      pc.addStream(mediaStream);
+      pc.onicecandidate = (event) => {
+        if (event.candidate != null) {
+          socket.emit('sendCandidate', { index: i, candidate: event.candidate, sessionId: SESSION_ID });
+          console.log('Candidate Sent:', { index: i, candidate: event.candidate });
+        }
+      };
+    }
   });
-  socket.emit('getSessionCalles', SESSION_ID);
+  socket.emit('getNumberOfCallee', null);
 }
-
-socket.on('session_type', (sessionType) => {
-  this.sessionType = sessionType;
-  if (sessionType == 'caller') {
-    $("#session_init").modal({ backdrop: 'static', keyboard: false });
-  }
-  console.log(sessionType);
-});
+function startWebRTCForCallee() {
+  let pc = new RTCPeerConnection(RTC_CONFIGURATION);
+  socket.on('candidate', (candidate) => {
+    console.log('Candidate Received:', candidate);
+    callee.addIceCandidate(candidate);
+  })
+}
 
 $(document).ready(() => {
   console.log(SESSION_ID);
@@ -61,7 +87,8 @@ $(document).ready(() => {
     else {
       $("#alertWrapper").empty();
       $("#session_init").modal('hide');
-      startWebRTC();
+      $(".videoStreaming").srcObject = mediaStream;
+      startWebRTCForCaller();
     }
   });
 });

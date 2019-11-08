@@ -18,9 +18,12 @@ module.exports.on = (io) => {
       console.log('\nSession:', session_id, '\nCaller:', sessions[session_id]['caller'].id, 'Callee:', sessions[session_id]['callee'].length);
     });
 
-    socket.on('getSessionCalles', (sessionId) => {
-      console.log(sessions[sessionId]['callee'].map((value) => { return value.id; }));
-      socket.emit('sessionCalles', sessions[sessionId]['callee'].map((value) => { return value.id; }));
+    socket.on('getNumberOfCallee', (sessionId) => {
+      socket.emit('numberOfCallee', sessions[sessionId]['callee'].length);
+    });
+
+    socket.on('sendCandidate', (candidateData) => {
+      sessions[candidateData['sessionId']]['callee'][candidateData['index']].emit('candidate', candidateData['candidate']);
     });
 
     socket.on('disconnect', () => {
