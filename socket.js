@@ -19,7 +19,7 @@ module.exports.on = (io) => {
         sessions[session_id]['callee'].push(socket);
         socket.emit('session_type', 'callee');
       }
-      console.log('\nSession:', session_id, '\nCaller:', sessions[session_id]['caller'].id, 'Callee:', sessions[session_id]['callee'].length);
+      console.log('\nSession:', session_id, '\nCaller:', (sessions[session_id]['caller'] != undefined) ? sessions[session_id]['caller'].id : null, 'Callee:', sessions[session_id]['callee'].length);
     });
 
     socket.on('getNumberOfCallee', (sessionId) => {
