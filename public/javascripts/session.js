@@ -61,7 +61,7 @@ function startWebRTCForCaller() {
     caller[candidateData['index']].addIceCandidate(candidateData['candidate']);
   });
   socket.on('answer', (answerData) => {
-    console.log('Answer Recieved:', answerData['answer'], caller[answerData['index']].signalingState);
+    console.log('Answer Recieved:', answerData['answer'], caller[answerData['index']]);
     caller[answerData['index']].setRemoteDescription(answerData['answer']);
   });
   socket.on('requestOffer', (indexOfCallee) => {
@@ -77,6 +77,7 @@ function startWebRTCForCaller() {
     }).then(() => {
       socket.emit('sendOffer', { index: indexOfCallee, offer: pc.localDescription, sessionId: SESSION_ID });
     });
+    console.log("MYPC:", pc);
     caller.push(pc);
   });
   socket.emit('getNumberOfCallee', SESSION_ID);
