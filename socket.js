@@ -11,8 +11,12 @@ module.exports.on = (io) => {
     console.log('Socket Connected', socket.id);
     
     socket.on('join_session', (session_id) => {
-      if (sessions[session_id] == undefined || sessions[session_id]['caller'] == undefined) {
+      if (sessions[session_id] == undefined) {
         sessions[session_id] = { 'caller': socket, 'callee': [] };
+        socket.emit('session_type', 'caller');
+      }
+      else if (sessions[session_id]['caller'] == undefined) {
+        sessions[session_id]['caller'] = socket;
         socket.emit('session_type', 'caller');
       }
       else {
