@@ -112,6 +112,9 @@ function startWebRTCForCallee() {
           socket.emit('sendAnswer', { answer: pc.localDescription, sessionId: SESSION_ID });
         });
       });
+      socket.on('callerDisconnected', () => {
+        makeAlert('세션 주최자의 연결이 끊겼습니다');
+      });
       socket.emit('requestOffer', SESSION_ID);
       callee = pc;
     }
@@ -139,6 +142,9 @@ function startWebRTCForCallee() {
         }).then(() => {
           socket.emit('sendAnswer', { answer: pc.localDescription, sessionId: SESSION_ID });
         });
+      });
+      socket.on('callerDisconnected', () => {
+        makeAlert('세션 주최자의 연결이 끊겼습니다');
       });
       callee = pc;
     }

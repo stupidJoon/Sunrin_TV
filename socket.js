@@ -63,6 +63,9 @@ module.exports.on = (io) => {
       for (let [sessionId, session] of Object.entries(sessions)) {
         if (session['caller'] == socket) {
           sessions[sessionId]['caller'] = undefined;
+          sessions[sessionId]['callee'].forEach((callee) => {
+            callee.emit('callerDisconnected', null);
+          });
           break;
         }
         else {
@@ -70,7 +73,7 @@ module.exports.on = (io) => {
             if (callee == socket) {
               sessions[sessionId]['callee'].splice(index);
               if (sessions[sessionId]['caller'] != undefined) {
-                
+                sessions[sessionId]['caller'].emit('calleeDisconnected', index);
               }
             }
           });
