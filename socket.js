@@ -58,7 +58,7 @@ module.exports.on = (io) => {
     socket.on('disconnect', () => {
       Object.keys(sessions).forEach((value1, index) => {
         if (sessions[value1]['caller'] == socket) {
-          sessions[value1]['caller'] = null;
+          sessions[value1]['caller'] = undefined;
         }
         else {
           sessions[value1]['callee'].forEach((value2, index) => {
