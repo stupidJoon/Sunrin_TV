@@ -102,10 +102,10 @@ $(document).ready(() => {
     })
   });
   $("#saveModalConfigButton").click(() => {
-    if ($("#sessionTitle").val().trim() == '') {
+    if ($("#sessionTitleInput").val().trim() == '') {
       $("#alertWrapper").append(makeAlert('세션 제목을 적어주세요!'));
     }
-    else if ($("#sessionDetail").val().trim() == '') {
+    else if ($("#sessionDetailInput").val().trim() == '') {
       $("#alertWrapper").append(makeAlert('세션 설명을 적어주세요!'));
     }
     else if (mediaStream == undefined) {
@@ -115,6 +115,8 @@ $(document).ready(() => {
       $("#alertWrapper").empty();
       $("#session_init").modal('hide');
       $(".videoStreaming")[0].srcObject = mediaStream;
+      $("#sessionTitle").text($("#sessionTitleInput").val());
+      $("#sessionDetail").text($("#sessionDetailInput").val());
       startWebRTCForCaller();
     }
   });
