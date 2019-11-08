@@ -68,8 +68,8 @@ $(document).ready(() => {
   console.log(SESSION_ID);
   socket.emit('join_session', SESSION_ID);
   $("#sessionInputScreenSelectButton").click(() => {
-    navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((mediaStream) => {
-      this.mediaStream = mediaStream;
+    navigator.mediaDevices.getDisplayMedia({ audio: false, video: true }).then((stream) => {
+      mediaStream = stream;
     }).catch((e) => {
       $("#alertWrapper").append(makeError(e + ' 에러가 발생했습니다. 다시 시도해주세요'));
     })
