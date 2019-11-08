@@ -19,10 +19,12 @@ module.exports.on = (io) => {
     });
 
     socket.on('getNumberOfCallee', (sessionId) => {
+      console.log('Number Of Calle:', sessions[sessionId]['callee'].length)
       socket.emit('numberOfCallee', sessions[sessionId]['callee'].length);
     });
 
     socket.on('sendCandidate', (candidateData) => {
+      console.log('Send Candidate:', candidateData['candidate']);
       sessions[candidateData['sessionId']]['callee'][candidateData['index']].emit('candidate', candidateData['candidate']);
     });
 
