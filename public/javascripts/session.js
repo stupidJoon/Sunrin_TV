@@ -120,6 +120,10 @@ function startWebRTCForCallee() {
       socket.on('callerDisconnected', () => {
         makeAlert('세션 주최자의 연결이 끊겼습니다');
       });
+      socket.on('titleAndDetail', (titleAndDetail) => {
+        $("#sessionTitle").text(titleAndDetail['title']);
+        $("#sessionDetail").text(titleAndDetail['detail']);
+      });
       socket.emit('requestOffer', SESSION_ID);
       callee = pc;
     }
@@ -190,6 +194,7 @@ $(document).ready(() => {
       $("#sessionTitle").text($("#sessionTitleInput").val());
       $("#sessionDetail").text($("#sessionDetailInput").val());
       nickName = $("#sessionNickName").val().trim();
+      socket.emit('titleAndDetail', { sessionId: SESSION_ID, title: $("#sessionTitleInput").val(), detail: $("#sessionDetailInput").val() });
       startWebRTCForCaller();
     }
   });

@@ -66,6 +66,12 @@ module.exports.on = (io) => {
       });
     });
 
+    socket.on('titleAndDetail', (titleAndDetail) => {
+      sessions[titleAndDetail['sessionId']]['callee'].forEach((value) => {
+        value.emit('titleAndDetail', titleAndDetail);
+      });
+    });
+
     socket.on('disconnect', () => {
       for (let [sessionId, session] of Object.entries(sessions)) {
         if (session['caller'] == socket) {
