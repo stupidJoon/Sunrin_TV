@@ -23,9 +23,24 @@ module.exports.on = (io) => {
       socket.emit('numberOfCallee', sessions[sessionId]['callee'].length);
     });
 
-    socket.on('sendCandidate', (candidateData) => {
-      console.log('Send Candidate:', candidateData['candidate']);
-      sessions[candidateData['sessionId']]['callee'][candidateData['index']].emit('candidate', candidateData['candidate']);
+    socket.on('sendCandidateToCallee', (candidateData) => {
+      console.log('Send Candidate To Callee:', candidateData['candidate']);
+      sessions[candidateData['sessionId']]['callee'][candidateData['index']].emit('candidateToCallee', candidateData['candidate']);
+    });
+
+    socket.on('sendCandidateToCaller', (candidateData) => {
+      console.log('Send Candidate To Caller:', candidateData['candidate']);
+      sessions[candidateData['sessionId']]['caller'].emit('candidateToCaller', candidateData['candidate']);
+    });
+
+    socket.on('sendOffer', (offerData) => {
+      console.log('Send Offer:', offerData['offer']);
+      sessions[offerData['sessionId']]['callee'][offerData['index']].emit('offer', offerData['offer']);
+    });
+
+    socket.on('sendAnswer', (answerData) => {
+      console.log('Send Answer:', answerData['answer']);
+      sessions[answerData['sessionId']]['caller'].emit('answer', { index: sessions[answerData['sessionId']].indexOf(socket), answer: answerData['answer'] });
     });
 
     socket.on('disconnect', () => {
