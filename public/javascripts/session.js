@@ -198,6 +198,7 @@ $(document).ready(() => {
       $("#alertWrapper").append(makeAlert('세션에서 사용할 닉네임을 적어주세요!'));
     }
     else {
+      $("#session_init_callee").modal('hide');
       nickName = $("#sessionNickNameForCallee").val().trim();
     }
   });
