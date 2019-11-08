@@ -13,6 +13,7 @@ const socket = io.connect('');
 
 let sessionType;
 let mediaStream;
+let nickName;
 
 let caller = [];
 let callee;
@@ -20,15 +21,15 @@ let callee;
 socket.on('session_type', (sessionType) => {
   this.sessionType = sessionType;
   if (sessionType == 'caller') {
-    // $("#session_init").modal({ backdrop: 'static', keyboard: false });
+    $("#session_init").modal({ backdrop: 'static', keyboard: false });
   }
   else {
     startWebRTCForCallee();
   }
   console.log('My Session Type:', sessionType);
 });
-socket.on('sendChat', (message) => {
-
+socket.on('sendChat', (chatData) => {
+  $("#liveChatConatiner").append('<p id="liveChat"><span class="userName">' + chatData['nickName'] + ': </span>' + chatData['message'] + '</p>')
 });
 
 function makeAlert(msg) {
@@ -169,7 +170,10 @@ $(document).ready(() => {
     })
   });
   $("#saveModalConfigButton").click(() => {
-    if ($("#sessionTitleInput").val().trim() == '') {
+    if ($("#sessionNickName").val().trim() == '') {
+      $("#alertWrapper").append(makeAlert('세션에서 사용할 닉네임을 적어주세요!'));
+    }
+    else if ($("#sessionTitleInput").val().trim() == '') {
       $("#alertWrapper").append(makeAlert('세션 제목을 적어주세요!'));
     }
     else if ($("#sessionDetailInput").val().trim() == '') {
@@ -184,10 +188,11 @@ $(document).ready(() => {
       $(".videoStreaming")[0].srcObject = mediaStream;
       $("#sessionTitle").text($("#sessionTitleInput").val());
       $("#sessionDetail").text($("#sessionDetailInput").val());
+      nickName = $("#sessionNickName").val().trim();
       startWebRTCForCaller();
     }
   });
   $("#sendChat").click(() => {
-    socket.emit('sendChat', { sessionId: SESSION_ID, message: $("#chatBox").val().trim() });
+    socket.emit('sendChat', { sessionId: SESSION_ID, nickName: nickName, message: $("#chatBox").val().trim() });
   });
 });
