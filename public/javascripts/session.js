@@ -81,7 +81,7 @@ $(document).ready(() => {
     else if ($("#sessionDetail").val().trim() == '') {
       $("#alertWrapper").append(makeAlert('세션 설명을 적어주세요!'));
     }
-    else if (this.mediaStream == undefined) {
+    else if (mediaStream == undefined) {
       $("#alertWrapper").append(makeAlert('세션 송출 화면을 선택해주세요!'));
     }
     else {
