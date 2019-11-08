@@ -66,6 +66,7 @@ function startWebRTCForCaller() {
   });
   socket.on('requestOffer', (indexOfCallee) => {
     let pc = new RTCPeerConnection(RTC_CONFIGURATION);
+    pc.addStream(mediaStream);
     pc.onicecandidate = (event) => {
       if (event.candidate != null) {
         socket.emit('sendCandidateToCallee', { index: indexOfCallee, candidate: event.candidate, sessionId: SESSION_ID });
@@ -77,7 +78,6 @@ function startWebRTCForCaller() {
     }).then(() => {
       socket.emit('sendOffer', { index: indexOfCallee, offer: pc.localDescription, sessionId: SESSION_ID });
     });
-    console.log("MYPC:", pc);
     caller.push(pc);
   });
   socket.on('calleeDisconnected', (indexOfCallee) => {
