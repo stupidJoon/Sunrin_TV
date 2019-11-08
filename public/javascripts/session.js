@@ -20,7 +20,7 @@ let callee;
 socket.on('session_type', (sessionType) => {
   this.sessionType = sessionType;
   if (sessionType == 'caller') {
-    $("#session_init").modal({ backdrop: 'static', keyboard: false });
+    // $("#session_init").modal({ backdrop: 'static', keyboard: false });
   }
   else {
     startWebRTCForCallee();
@@ -28,7 +28,7 @@ socket.on('session_type', (sessionType) => {
   console.log('My Session Type:', sessionType);
 });
 socket.on('sendChat', (message) => {
-  
+
 });
 
 function makeAlert(msg) {
