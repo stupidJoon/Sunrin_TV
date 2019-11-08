@@ -185,6 +185,6 @@ $(document).ready(() => {
     }
   });
   $("#sendChat").click(() => {
-    socket.emit('sendChat', { from: sessionType, sessionId: SESSION_ID, message: $("#sessionDetail").val() });
+    socket.emit('sendChat', { from: sessionType, sessionId: SESSION_ID, message: $("#chatBox").val().trim() });
   });
 });
