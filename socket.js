@@ -59,21 +59,8 @@ module.exports.on = (io) => {
       sessions[sessionId]['caller'].emit('requestOffer', getIndexOfCallee(sessionId, socket));
     });
 
-    socket.on('callerDisconnected', (sessionId) => {
-      sessions[sessionId]['caller'] = undefined;
-      sessions[sessionId]['callee'].forEach((value, index) => {
-        value.emit('callerDisconnected', null);
-      });
-      console.log('Caller Disconnected', sessionId);
-    });
-
-    socket.on('calleeDisconnected', (calleeDisconnectedData) => {
-      let indexOfCallee = getIndexOfCallee(calleeDisconnectedData['sessionId'], calleeDisconnectedData['callee']);
-      if (sessions[calleeDisconnectedData['sessionId']]['caller'] != undefined) {
-        sessions[calleeDisconnectedData['sessionId']]['caller'].emit('calleeDisconnected', indexOfCallee);
-      }
-      sessions[calleeDisconnectedData['sessionId']]['callee'].splice(indexOfCallee);
-      console.log('Callee Disconnected', calleeDisconnectedData['sessionId'], indexOfCallee)
+    socket.on('disconnect', () => {
+      console.log("DISCONNECTED");
     });
   });
 }

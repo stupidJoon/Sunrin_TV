@@ -179,11 +179,3 @@ $(document).ready(() => {
     }
   });
 });
-$(window).on('unload', () => {
-  if (sessionType == 'caller') {
-    socket.emit('callerDisconnected', SESSION_ID);
-  }
-  else {
-    socket.emit('calleeDisconnected', { sessionId: SESSION_ID, callee: callee });
-  }
-});
