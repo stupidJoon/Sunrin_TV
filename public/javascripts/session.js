@@ -172,7 +172,7 @@ $(document).ready(() => {
     }
   });
 });
-$(window).unload(() => {
+$(window).unload(function() {
   if (callee != undefined) {
     callee.close();
   }
