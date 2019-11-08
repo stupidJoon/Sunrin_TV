@@ -48,6 +48,9 @@ function startWebRTCForCaller() {
           console.log('Candidate Sent:', { index: i, candidate: event.candidate });
         }
       };
+      pc.onconnectionstatechange = (event) => {
+        console.log(pc.connectionState);
+      };
       pc.createOffer().then((offer) => {
         return pc.setLocalDescription(offer);
       }).then(() => {
