@@ -24,14 +24,6 @@ socket.on('session_type', (sessionType) => {
   }
   console.log(sessionType);
 });
-socket.on('candidate', (data) => {
-  console.log('Received Sent:', data['candidate']);
-  callers[data['id']].addIceCandidate(data['candidate']);
-});
-socket.on('answer', (data) => {
-  console.log('Answer Recieved:', data);
-  callers[data['id']].setRemoteDescription(data['answer']);
-});
 
 function makeAlert(msg) {
   $("#alertWrapper").empty();
