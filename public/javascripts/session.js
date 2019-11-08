@@ -56,7 +56,7 @@ function startWebRTCForCaller() {
   });
   socket.on('candidateToCaller', (candidateData) => {
     console.log('Candidate Received:', candidateData['candidate']);
-    caller[candidateData['index']].addIceCandidate(candidate);
+    caller[candidateData['index']].addIceCandidate(candidateData['candidate']);
   });
   socket.on('answer', (answerData) => {
     console.log('Answer Recieved:', answerData['answer']);
