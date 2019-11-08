@@ -192,6 +192,14 @@ $(document).ready(() => {
       startWebRTCForCaller();
     }
   });
+  $("#saveModalConfigButtonForCallee").click(() => {
+    if ($("#sessionNickNameForCallee").val().trim() == '') {
+      $("#alertWrapper").append(makeAlert('세션에서 사용할 닉네임을 적어주세요!'));
+    }
+    else {
+      nickName = $("#sessionNickNameForCallee").val().trim();
+    }
+  });
   $("#sendChat").click(() => {
     socket.emit('sendChat', { sessionId: SESSION_ID, nickName: nickName, message: $("#chatBox").val().trim() });
   });

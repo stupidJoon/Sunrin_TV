@@ -21,7 +21,7 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- Modal -->
+    <!-- Modal For Caller -->
     <div class="modal fade" id="session_init" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -53,7 +53,30 @@
         </div>
       </div>
     </div>
-    
+
+    <!-- Modal For Callee -->
+    <div class="modal fade" id="session_init" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">세션 설정</h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="sessionNickNameForCallee">세션 닉네임</label>
+                <input type="text" class="form-control" id="sessionNickNameForCallee">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="saveModalConfigButtonForCallee">설정 저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
           <a class="navbar-brand" href="#">Sunrin TV</a>
@@ -91,23 +114,7 @@
     <div class="container-fluid p-0 fullScreen">
       <div class="row m-0 w100h70">
           <video class="videoStreaming" controls playsinline autoplay></video>
-          <div id="liveChatConatiner">
-            <p id="liveChat"><span class="userName">Test_NickName: </span>Test_Chat_Chat_Chat_Chat_Chat_Chat_Chat_Chat_Chat</p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-            <p id="liveChat"><span class="userName">Test_NickName: </span><span>Test_Chat_Chat_Chat</span></p>
-          </div>
+          <div id="liveChatConatiner"></div>
       </div>
       <div class="row m-0 p-0 w100h20">
         <div class="m-0 p-3 w80h100" id="sessionInfo">
