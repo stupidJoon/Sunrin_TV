@@ -184,4 +184,7 @@ $(document).ready(() => {
       startWebRTCForCaller();
     }
   });
+  $("#sendChat").click(() => {
+    socket.emit('sendChat', { from: sessionType, sessionId: SESSION_ID, message: $("#sessionDetail").val() });
+  });
 });

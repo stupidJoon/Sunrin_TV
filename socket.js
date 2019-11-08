@@ -59,6 +59,10 @@ module.exports.on = (io) => {
       sessions[sessionId]['caller'].emit('requestOffer', getIndexOfCallee(sessionId, socket));
     });
 
+    socket.on('sendChat', (chatData) => {
+      console.log(chatData);
+    });
+
     socket.on('disconnect', () => {
       for (let [sessionId, session] of Object.entries(sessions)) {
         if (session['caller'] == socket) {
