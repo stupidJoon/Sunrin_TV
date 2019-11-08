@@ -48,9 +48,6 @@ function startWebRTCForCaller() {
           console.log('Candidate Sent:', { index: i, candidate: event.candidate });
         }
       };
-      pc.onconnectionstatechange = (event) => {
-        console.log(pc.connectionState);
-      };
       pc.createOffer().then((offer) => {
         return pc.setLocalDescription(offer);
       }).then(() => {
@@ -177,10 +174,10 @@ $(document).ready(() => {
   });
 });
 $(window).on('unload', () => {
-  if (callee != undefined) {
-    callee.close();
+  if (sessionType == 'caller') {
+    socket.emit('callerDisconnected', SESSION_ID);
   }
   else {
-    caller.forEach((value) => { value.close(); });
+    socket.emit('calleeDisconnected', { sessionId: SESSION_ID, callee: callee });
   }
 });

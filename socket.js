@@ -59,21 +59,11 @@ module.exports.on = (io) => {
       sessions[sessionId]['caller'].emit('requestOffer', getIndexOfCallee(sessionId, socket));
     });
 
-    socket.on('disconnect', () => {
-      Object.keys(sessions).forEach((value1, index) => {
-        if (sessions[value1]['caller'] == socket) {
-          sessions[value1]['caller'] = undefined;
-        }
-        else {
-          sessions[value1]['callee'].forEach((value2, index) => {
-            if (value2 == socket) {
-              sessions[value1]['callee'].splice(index);
-            }
-          });
-        }
+    socket.on('callerDisconnected', (sessionId) => {
+      sessions[sessionId]['caller'] = undefined;
+      sessions[sessionId]['callee'].forEach((value, index) => {
+        // 세션 종류 알려주기 하기
       });
-      console.log('Socket Disconnected', socket.id);
     });
-
   });
 }
