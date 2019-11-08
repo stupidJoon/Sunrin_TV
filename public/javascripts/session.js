@@ -27,6 +27,9 @@ socket.on('session_type', (sessionType) => {
   }
   console.log('My Session Type:', sessionType);
 });
+socket.on('sendChat', (message) => {
+  
+});
 
 function makeAlert(msg) {
   $("#alertWrapper").empty();
@@ -185,6 +188,6 @@ $(document).ready(() => {
     }
   });
   $("#sendChat").click(() => {
-    socket.emit('sendChat', { from: sessionType, sessionId: SESSION_ID, message: $("#chatBox").val().trim() });
+    socket.emit('sendChat', { sessionId: SESSION_ID, message: $("#chatBox").val().trim() });
   });
 });

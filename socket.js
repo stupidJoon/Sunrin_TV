@@ -60,7 +60,10 @@ module.exports.on = (io) => {
     });
 
     socket.on('sendChat', (chatData) => {
-      console.log(chatData);
+      sessions[chatData['sessionId']]['caller'].emit('sendChat', chatData['message']);
+      sessions[chatData['sessionId']]['callee'].forEach((value) => {
+        value.emit('sendChat', chatData['message']);
+      });
     });
 
     socket.on('disconnect', () => {
