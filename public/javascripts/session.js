@@ -177,6 +177,6 @@ $(window).on('unload', () => {
     callee.close();
   }
   else {
-    caller.forEach((value) => { value.close(); })
+    caller.forEach((value) => { value.close(); });
   }
 });
