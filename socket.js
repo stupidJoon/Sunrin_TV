@@ -64,6 +64,7 @@ module.exports.on = (io) => {
       sessions[sessionId]['callee'].forEach((value, index) => {
         value.emit('callerDisconnected', null);
       });
+      console.log('Caller Disconnected', sessionId);
     });
 
     socket.on('calleeDisconnected', (calleeDisconnectedData) => {
@@ -72,6 +73,7 @@ module.exports.on = (io) => {
         sessions[calleeDisconnectedData['sessionId']]['caller'].emit('calleeDisconnected', indexOfCallee);
       }
       sessions[calleeDisconnectedData['sessionId']]['callee'].splice(indexOfCallee);
+      console.log('Callee Disconnected', calleeDisconnectedData['sessionId'], indexOfCallee)
     });
   });
 }
