@@ -72,6 +72,10 @@ function startWebRTCForCallee() {
       console.log('Candidate Sent:', { candidate: event.candidate });
     }
   };
+  pc.onaddstream = (event) => {
+    $(".videoStreaming")[0].srcObject = event.stream;
+    console.log("Stream Added:", event.stream);
+  };
   socket.on('candidateToCallee', (candidate) => {
     console.log('Candidate Received:', candidate);
     pc.addIceCandidate(candidate);
