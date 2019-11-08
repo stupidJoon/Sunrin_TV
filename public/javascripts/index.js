@@ -7,6 +7,6 @@ $(document).ready(() => {
 
   $("#joinByCode").click(() => {
     let sessionCode = $("#session").val().trim();
-    location.href = sessionCode;
+    location.href = 'session/' + sessionCode;
   });
 });
