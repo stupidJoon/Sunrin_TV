@@ -54,9 +54,9 @@ function startWebRTCForCaller() {
       caller.push(pc);
     }
   });
-  socket.on('candidateToCaller', (candidate) => {
-    console.log('Candidate Received:', candidate);
-    pc.addIceCandidate(candidate);
+  socket.on('candidateToCaller', (candidateData) => {
+    console.log('Candidate Received:', candidateData['candidate']);
+    caller[candidateData['index']].addIceCandidate(candidate);
   });
   socket.on('answer', (answerData) => {
     console.log('Answer Recieved:', answerData['answer']);

@@ -30,7 +30,7 @@ module.exports.on = (io) => {
 
     socket.on('sendCandidateToCaller', (candidateData) => {
       console.log('Send Candidate To Caller:', candidateData['candidate']);
-      sessions[candidateData['sessionId']]['caller'].emit('candidateToCaller', candidateData['candidate']);
+      sessions[candidateData['sessionId']]['caller'].emit('candidateToCaller', { index: sessions[answerData['sessionId']]['callee'].findIndex((element) => { return element == socket; }), candidate: candidateData['candidate']});
     });
 
     socket.on('sendOffer', (offerData) => {
