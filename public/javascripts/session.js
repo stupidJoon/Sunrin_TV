@@ -29,7 +29,7 @@ socket.on('session_type', (sessionType) => {
   console.log('My Session Type:', sessionType);
 });
 socket.on('sendChat', (chatData) => {
-  $("#liveChatConatiner").append('<p id="liveChat"><span class="userName">' + chatData['nickName'] + ': </span>' + chatData['message'] + '</p>')
+  $("#liveChatConatiner").prepend('<p id="liveChat"><span class="userName">' + chatData['nickName'] + ': </span>' + chatData['message'] + '</p>')
 });
 
 function makeAlert(msg) {
