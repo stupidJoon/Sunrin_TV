@@ -88,7 +88,7 @@ $(document).ready(() => {
     else {
       $("#alertWrapper").empty();
       $("#session_init").modal('hide');
-      $(".videoStreaming").srcObject = mediaStream;
+      $(".videoStreaming")[0].srcObject = mediaStream;
       startWebRTCForCaller();
     }
   });
