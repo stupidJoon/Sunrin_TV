@@ -60,7 +60,22 @@ module.exports.on = (io) => {
     });
 
     socket.on('disconnect', () => {
-      console.log("DISCONNECTED");
+      for (let [sessionId, session] of Object.entries(sessions)) {
+        if (session['caller'] == socket) {
+          sessions[sessionId]['caller'] = undefined;
+          break;
+        }
+        else {
+          session['callee'].forEach((callee, index) => {
+            if (callee == socket) {
+              sessions[sessionId]['callee'].splice(index);
+              if (sessions[sessionId]['caller'] != undefined) {
+                
+              }
+            }
+          });
+        }
+      }
     });
   });
 }
