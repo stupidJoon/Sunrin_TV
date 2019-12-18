@@ -11,11 +11,23 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 router.get('/signin', (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/signin.html'));
+  if (req.isAuthenticated()) {
+    // res.sendFile(path.join(__dirname, '../views/signin.html'));
+    res.render(path.join(__dirname, '../views/signin.jade'));
+  }
+  else {
+    // res.sendFile(path.join(__dirname, '../views/signin.html'));
+    res.render(path.join(__dirname, '../views/signin.jade'));
+  }
 });
-router.post('/signin', passport.authenticate('local', {
-  successRedirect: '/status',
-  failureRedirect: '/status'
+router.post('/signin', passport.authenticate('local', (err, user, info) => {
+  if (err) throw err;
+  if (user) {
+    res.redirect('/');
+  }
+  else {
+    res.redirect('/signin');
+  }
 }));
 router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/signup.html'));
