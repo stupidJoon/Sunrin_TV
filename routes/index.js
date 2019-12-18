@@ -12,12 +12,12 @@ router.get('/', function(req, res, next) {
 });
 router.get('/signin', (req, res) => {
   if (req.isAuthenticated()) {
-    // res.sendFile(path.join(__dirname, '../views/signin.html'));
-    res.render(path.join(__dirname, '../views/signin.jade'));
+    res.sendFile(path.join(__dirname, '../views/signin.html'));
+    // res.render(path.join(__dirname, '../views/signin.jade'));
   }
   else {
-    // res.sendFile(path.join(__dirname, '../views/signin.html'));
-    res.render(path.join(__dirname, '../views/signin.jade'));
+    res.sendFile(path.join(__dirname, '../views/signin.html'));
+    // res.render(path.join(__dirname, '../views/signin.jade'));
   }
 });
 router.post('/signin', passport.authenticate('local', (err, user, info) => {
