@@ -3,8 +3,12 @@ const path = require('path');
 const shortid = require('shortid');
 const passport = require('passport');
 const bcyrpt = require('bcrypt');
-const Users = require('../passport/user.js')
+const Users = require('../passport/user.js');
+
 var router = express.Router();
+const bcryptSettings = {
+  saltRounds: 10
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
