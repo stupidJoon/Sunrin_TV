@@ -24,4 +24,8 @@ form.form-signin(action='/signin' method='POST')
   p.m-1
     a.text-secondary(href='signup') You Don&apos;t Have Account?
   p.mt-5.mb-3.text-muted &copy; Sunrin TV
-  .alert.alert-danger(role='alert') This is a danger alert-check it out!
+  .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+  strong Holy guacamole!
+  |  You should check in on some of those fields below.
+  button.close(type='button', data-dismiss='alert', aria-label='Close')
+    span(aria-hidden='true') ×
