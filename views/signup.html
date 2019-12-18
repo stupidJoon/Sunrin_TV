@@ -18,13 +18,13 @@
         <li class="nav-menu"><a href="signin" style="color: white; list-style-type: none;">로그인</a></li>
       </div>
     </nav>
-    <form class="form-signin">
+    <form class="form-signin" action="/signup" method="POST">
       <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
       <br>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <input name="id" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input name="pw" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
       <p class="mt-5 mb-3 text-muted">&copy; Sunrin TV</p>
