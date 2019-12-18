@@ -15,8 +15,12 @@ html(lang='en')
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       .container
         a.navbar-brand(href='/') Sunrin TV
-        li.nav-menu
-          a(href='signin', style='color: white; list-style-type: none;') 로그인
+        if auth
+          li.nav-menu
+          a(href='/signin', style='color: white; list-style-type: none;') 로그인
+        else
+          li.nav-menu
+          a(href='/signout', style='color: white; list-style-type: none;') 로그아웃
     header
       #carouselExampleIndicators.carousel.slide(data-ride='carousel')
         ol.carousel-indicators
