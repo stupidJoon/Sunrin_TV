@@ -22,15 +22,7 @@ router.get('/signin', (req, res) => {
   console.log(req.query.auth_fail);
   res.render(path.join(__dirname, '../views/signin.jade'));
 });
-router.post('/signin', passport.authenticate('local', (err, user, info) => {
-  if (err) throw err;
-  if (user) {
-    res.redirect('/');
-  }
-  else {
-    res.redirect('/signin?auth_fail=true');
-  }
-}));
+router.post('/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/signin?auth_fail=true' }));
 router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/signup.html'));
 });
