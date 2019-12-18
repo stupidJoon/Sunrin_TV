@@ -24,7 +24,4 @@ form.form-signin(action='/signin' method='POST')
   p.m-1
     a.text-secondary(href='signup') You Don&apos;t Have Account?
   p.mt-5.mb-3.text-muted &copy; Sunrin TV
-  #formRequireAlert.alert.alert-danger.alert-dismissible.fade.show.w80.m-auto(role='alert')
-  | 로그인을 실패했습니다!
-  button.close(type='button', data-dismiss='alert', aria-label='Close')
-    span(aria-hidden='true') ×
+  .alert.alert-danger(role='alert') This is a danger alert-check it out!
