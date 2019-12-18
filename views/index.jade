@@ -1,5 +1,52 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
+    link(rel='stylesheet', href='../stylesheets/index.css')
+    script(src='../javascripts/index.js')
+    title Sunrin TV
+  body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='/') Sunrin TV
+        li.nav-menu
+          a(href='signin', style='color: white; list-style-type: none;') 로그인
+    header
+      #carouselExampleIndicators.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+          li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
+          li(data-target='#carouselExampleIndicators', data-slide-to='1')
+          li(data-target='#carouselExampleIndicators', data-slide-to='2')
+        .carousel-inner(role='listbox')
+          .carousel-item.active(style="background-image: url('../images/YXemfQiPR_E.jpeg')")
+            .carousel-caption.d-none.d-md-block.blur
+              h3.display-4 손쉬운 원격 스트리밍
+              p.lead 프로그램 설치없이 브라우저만으로 쉽게 화면 공유 할 수 있습니다!
+          .carousel-item(style="background-image: url('../images/gMsnXqILjp4.jfif')")
+            .carousel-caption.d-none.d-md-block.blur
+              h3.display-4 온라인 미팅 & 컨퍼런스
+              p.lead 전세계 사람들과 실시간으로 손쉽게 만나보세요!
+          .carousel-item(style="background-image: url('../images/_uM5_nG2ssc.jfif')")
+            .carousel-caption.d-none.d-md-block.blur
+              h3.display-4 지금 시작하세요
+              p.lead 하단의 세션 만들기 또는 세션 코드를 사용해 진행중인 세션에 참여하세요!
+        a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+          span.carousel-control-prev-icon(aria-hidden='true')
+          span.sr-only Previous
+        a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
+          span.carousel-control-next-icon(aria-hidden='true')
+          span.sr-only Next
+    section.py-5
+      .container
+        button#create_session.btn.btn-primary.btn-lg.btn-block(type='button') 세션 만들기
+        h1 또는
+        .input-group.mb-3
+          input#session.form-control(type='text', placeholder='세션 코드를 입력해주세요')
+          .input-group-append
+            button#joinByCode.btn.btn-outline-secondary(type='button') 참여하기

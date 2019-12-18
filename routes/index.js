@@ -12,17 +12,10 @@ const bcryptSettings = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../views/index.html'));
+  res.render(path.join(__dirname, '../views/index.jade'));
+  // res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 router.get('/signin', (req, res) => {
-  // if (req.isAuthenticated()) {
-  //   // res.sendFile(path.join(__dirname, '../views/signin.html'));
-  //   res.render(path.join(__dirname, '../views/signin.jade'));
-  // }
-  // else {
-  //   // res.sendFile(path.join(__dirname, '../views/signin.html'));
-  //   res.render(path.join(__dirname, '../views/signin.jade'));
-  // }
   res.render(path.join(__dirname, '../views/signin.jade'), { auth: req.query.auth_fail });
 });
 router.post('/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/signin?auth_fail=true' }));
@@ -33,7 +26,7 @@ router.post('/signup', (req, res) => {
   bcyrpt.hash(req.body['pw'], bcryptSettings.saltRounds, (err, hash) => {
     Users.signUp(req.body['id'], hash);
   });
-  res.json({'status': true});
+  res.redirect('/signin');
 });
 router.get('/signout', (req, res) => {
   req.logout();
