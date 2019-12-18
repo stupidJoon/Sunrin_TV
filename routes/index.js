@@ -11,14 +11,16 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 router.get('/signin', (req, res) => {
-  if (req.isAuthenticated()) {
-    // res.sendFile(path.join(__dirname, '../views/signin.html'));
-    res.render(path.join(__dirname, '../views/signin.jade'));
-  }
-  else {
-    // res.sendFile(path.join(__dirname, '../views/signin.html'));
-    res.render(path.join(__dirname, '../views/signin.jade'));
-  }
+  // if (req.isAuthenticated()) {
+  //   // res.sendFile(path.join(__dirname, '../views/signin.html'));
+  //   res.render(path.join(__dirname, '../views/signin.jade'));
+  // }
+  // else {
+  //   // res.sendFile(path.join(__dirname, '../views/signin.html'));
+  //   res.render(path.join(__dirname, '../views/signin.jade'));
+  // }
+  console.log(req.query.auth_fail);
+  res.render(path.join(__dirname, '../views/signin.jade'));
 });
 router.post('/signin', passport.authenticate('local', (err, user, info) => {
   if (err) throw err;
@@ -26,7 +28,7 @@ router.post('/signin', passport.authenticate('local', (err, user, info) => {
     res.redirect('/');
   }
   else {
-    res.redirect('/signin');
+    res.redirect('/signin?auth_fail=true');
   }
 }));
 router.get('/signup', (req, res) => {
