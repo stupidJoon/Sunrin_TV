@@ -19,8 +19,7 @@ router.get('/signin', (req, res) => {
   //   // res.sendFile(path.join(__dirname, '../views/signin.html'));
   //   res.render(path.join(__dirname, '../views/signin.jade'));
   // }
-  console.log(req.query.auth_fail);
-  res.render(path.join(__dirname, '../views/signin.jade'));
+  res.render(path.join(__dirname, '../views/signin.jade'), { auth: req.query.auth_fail });
 });
 router.post('/signin', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/signin?auth_fail=true' }));
 router.get('/signup', (req, res) => {
