@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 router.get('/signin', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/signin.html'));
 });
-router.get('/signun', (req, res) => {
+router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/signup.html'));
 });
 router.get('/caller', (req, res) => {
