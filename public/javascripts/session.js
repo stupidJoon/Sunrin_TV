@@ -215,5 +215,6 @@ $(document).ready(() => {
   });
   $("#sendChat").click(() => {
     socket.emit('sendChat', { sessionId: SESSION_ID, nickName: nickName, message: $("#chatBox").val().trim() });
+    $("#sendChat").val('');
   });
 });
