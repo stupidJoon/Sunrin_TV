@@ -67,4 +67,7 @@ body {
 #alertWrapper {
   position: fixed;
   top: 80%;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
 }
