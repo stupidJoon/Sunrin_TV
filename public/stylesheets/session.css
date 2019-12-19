@@ -63,3 +63,8 @@ body {
 #formRequireAlert {
   z-index: 999999;
 }
+
+#alertWrapper {
+  position: fixed;
+  top: 80%;
+}
