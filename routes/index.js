@@ -42,7 +42,7 @@ router.get('/session', (req, res) => {
   res.redirect('/session/*' + shortid.generate());
 });
 router.get(/\/session\//, (req, res) => {
-  res.render(path.join(__dirname, '../views/session.jade'), { username: req.user.id });
+  res.render(path.join(__dirname, '../views/session.jade'), { user: req.user });
   // res.sendFile(path.join(__dirname, '../views/session.html'));
 });
 

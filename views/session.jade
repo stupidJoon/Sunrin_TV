@@ -24,8 +24,8 @@ html(lang='en')
               .form-group
                 label(for='sessionCode') 세션 코드
                 input#sessionCode.form-control(type='text', readonly='')
-              if username
-                input#sessionNickName(type='hidden', value='username')
+              if user
+                input#sessionNickName(type='hidden', value='#{user.id}')
               else
                 .form-group
                   label(for='sessionNickName') 세션 닉네임
