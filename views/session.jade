@@ -1,0 +1,67 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js')
+    link(rel='stylesheet', href='../stylesheets/session.css')
+    script(src='../javascripts/session.js')
+    title Session
+  body
+    // Modal For Caller
+    #session_init.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5#sessionSetting.modal-title 세션 설정
+          .modal-body
+            form
+              .form-group
+                label(for='sessionCode') 세션 코드
+                input#sessionCode.form-control(type='text', readonly='')
+              .form-group
+                label(for='sessionNickName') 세션 닉네임
+                input#sessionNickName.form-control(type='text')
+              .form-group
+                label(for='sessionTitleInput') 세션 제목
+                input#sessionTitleInput.form-control(type='text')
+              .form-group
+                label(for='sessionDetailInput') 세션 설명
+                textarea#sessionDetailInput.form-control(rows='3')
+            label(for='sessionInputScreenSelectButton') 세션 송출 화면 선택
+            button#sessionInputScreenSelectButton.btn.btn-secondary.btn-block 선택
+          .modal-footer
+            button#saveModalConfigButton.btn.btn-primary(type='button') 설정 저장
+    // Modal For Callee
+    #session_init_callee.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title 세션 설정
+          .modal-body
+            form
+              .form-group
+                label(for='sessionNickNameForCallee') 세션 닉네임
+                input#sessionNickNameForCallee.form-control(type='text')
+          .modal-footer
+            button#saveModalConfigButtonForCallee.btn.btn-primary(type='button') 설정 저장
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='/') Sunrin TV
+    .container-fluid.p-0.fullScreen
+      .row.m-0.w100h70
+        video.videoStreaming(controls='', playsinline='', autoplay='')
+        #liveChatConatiner
+      .row.m-0.p-0.w95h20
+        #sessionInfo.m-0.p-3.w80h100
+          h1#sessionTitle
+          p#sessionDetail
+        #sendChatDiv.w20h100
+          textarea#chatBox.form-control.mt-3.mb-3(rows='3')
+          button#sendChat.btn.btn-outline-secondary.btn-sm.btn-block(type='button') 채팅 보내기
+      #alertWrapper.row.text-center.m-0
