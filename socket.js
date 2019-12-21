@@ -1,3 +1,5 @@
+const xss = require('xss');
+
 var exports = module.exports = {};
 
 let sessions = {};
