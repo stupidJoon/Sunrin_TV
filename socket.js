@@ -60,9 +60,10 @@ module.exports.on = (io) => {
     });
 
     socket.on('sendChat', (chatData) => {
-      sessions[chatData['sessionId']]['caller'].emit('sendChat', { nickName: chatData['nickName'], message: chatData['message']});
+      let message = xss(chatData['message']);
+      sessions[chatData['sessionId']]['caller'].emit('sendChat', { nickName: chatData['nickName'], message: message });
       sessions[chatData['sessionId']]['callee'].forEach((value) => {
-        value.emit('sendChat', { nickName: chatData['nickName'], message: chatData['message'] });
+        value.emit('sendChat', { nickName: chatData['nickName'], message: message });
       });
     });
 
