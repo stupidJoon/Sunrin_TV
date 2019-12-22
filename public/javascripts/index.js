@@ -3,7 +3,6 @@ $(document).ready(() => {
 		autoScrolling:true,
 		scrollHorizontally: true
 	});
-	$.fn.fullpage.setAllowScrolling(false);
 
   let createSessionButton = $("#create_session");
   createSessionButton.click(() => {
