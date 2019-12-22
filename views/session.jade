@@ -51,7 +51,7 @@ html(lang='en')
               .form-group
                 label(for='sessionNickNameForCallee') 세션 닉네임
                 if user
-                  input#sessionNickNameForCallee.form-control(type='text') user.id
+                  input#sessionNickNameForCallee.form-control(type='text', value=user.id)
                 else
                   input#sessionNickNameForCallee.form-control(type='text')
           .modal-footer
