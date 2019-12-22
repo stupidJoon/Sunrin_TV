@@ -25,7 +25,7 @@ socket.on('session_type', (sessionType) => {
   }
   else {
     let modal = $("#session_init_callee");
-    if (modal.val() == '') {
+    if ($("#sessionNickNameForCallee").val() == '') {
       modal.modal({ backdrop: 'static', keyboard: false });
     }
     else {
