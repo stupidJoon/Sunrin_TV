@@ -1,8 +1,5 @@
 $(document).ready(() => {
-  $('#fullpage').fullpage({
-		autoScrolling:true,
-		scrollHorizontally: true
-  });
+  $('#fullpage').fullpage();
 
   let createSessionButton = $("#create_session");
   createSessionButton.click(() => {
