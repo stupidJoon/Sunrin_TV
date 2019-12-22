@@ -21,6 +21,7 @@
 
 .fullwidth {
   height: 100vh;
+  display: inline-block;
 }
 
 .fullheight {
