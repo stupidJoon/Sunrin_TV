@@ -50,7 +50,10 @@ html(lang='en')
             form
               .form-group
                 label(for='sessionNickNameForCallee') 세션 닉네임
-                input#sessionNickNameForCallee.form-control(type='text')
+                if user
+                  input#sessionNickNameForCallee.form-control(type='text') user.id
+                else
+                  input#sessionNickNameForCallee.form-control(type='text')
           .modal-footer
             button#saveModalConfigButtonForCallee.btn.btn-primary(type='button') 설정 저장
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top

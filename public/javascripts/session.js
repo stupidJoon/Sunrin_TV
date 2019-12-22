@@ -24,7 +24,8 @@ socket.on('session_type', (sessionType) => {
     $("#session_init").modal({ backdrop: 'static', keyboard: false });
   }
   else {
-    $("#session_init_callee").modal({ backdrop: 'static', keyboard: false });
+    let modal = $("#session_init_callee");
+    modal.modal({ backdrop: 'static', keyboard: false });
     startWebRTCForCallee();
   }
   console.log('My Session Type:', sessionType);
