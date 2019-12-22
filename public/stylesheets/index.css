@@ -18,3 +18,11 @@
   width: 100vw;
   height: 100vh;
 }
+
+.fullwidth {
+  height: 100vh;
+}
+
+.fullheight {
+  width: 100vh;
+}
