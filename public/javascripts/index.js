@@ -1,9 +1,4 @@
 $(document).ready(() => {
-  $('#fullpage').fullpage({
-		autoScrolling:true,
-		scrollHorizontally: true
-	});
-
   let createSessionButton = $("#create_session");
   createSessionButton.click(() => {
     window.location.href = "session";
