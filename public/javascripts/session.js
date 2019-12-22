@@ -25,7 +25,12 @@ socket.on('session_type', (sessionType) => {
   }
   else {
     let modal = $("#session_init_callee");
-    modal.modal({ backdrop: 'static', keyboard: false });
+    if (modal.val() == '') {
+      modal.modal({ backdrop: 'static', keyboard: false });
+    }
+    else {
+      $("#saveModalConfigButtonForCallee").trigger('click');
+    }
     startWebRTCForCallee();
   }
   console.log('My Session Type:', sessionType);
