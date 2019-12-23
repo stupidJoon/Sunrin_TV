@@ -30,11 +30,11 @@ html(lang='en')
       a.navbar-brand(href='') Sunrin TV
       button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
         span.navbar-toggler-icon
-      .mx-auto.order-0
-        form.form-inline
-          input.form-control(placeholder='세션 코드를 입력하세요')
-          button.btn(type='submit') 참가
       .collapse.navbar-collapse#navbarNav
+        ul.navbar-nav.mx-auto
+          form.form-inline
+            input.form-control(placeholder='세션 코드를 입력하세요')
+            button.btn(type='submit') 참가
         ul.navbar-nav.ml-auto
           li.nav-item
             a.nav-link(href='#') 세션 만들기
