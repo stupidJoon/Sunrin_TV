@@ -54,9 +54,11 @@ html(lang='en')
           input#session.form-control(type='text' placeholder='세션 코드를 입력해주세요')
           .input-group-append
             button#joinByCode.btn.btn-outline-secondary(type='button') 참여하기
-    .session-cards
-      .card(style='width: 20rem;')
-        img.card-img-top(src="../images/_uM5_nG2ssc.jfif")
-        .card-body
-          h5.card-title Test Title
-          p.card-text test text
+    .session-cards.m-5
+      - var n = 0
+      while n < 100
+        .card(style='width: 20rem;')
+          img.card-img-top(src="../images/_uM5_nG2ssc.jfif")
+          .card-body
+            h5.card-title Test Title
+            p.card-text test text
