@@ -12,37 +12,38 @@ html(lang='en')
     script(src='../javascripts/index.js')
     title Sunrin TV
   body
-    //- nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-    //-   .container
-    //-     a.navbar-brand(href='/') Sunrin TV
-    //-     form.form-inline
-    //-       input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
-    //-       button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
-    //-     li.nav-menu
-    //-       //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
-    //-       //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
-    //-       if auth
-    //-         a(href='/signout' style='color: white; list-style-type: none;') 로그아웃
-    //-       else
-    //-         a(href='/signin' style='color: white; list-style-type: none;') 로그인
-
-    nav.navbar.navbar-light.bg-light.navbar-expand
-      a.navbar-brand(href='') Sunrin TV
-      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      .collapse.navbar-collapse#navbarNav
-        ul.navbar-nav.mx-auto
-          form.form-inline
-            input.form-control(placeholder='세션 코드를 입력하세요')
-            button.btn(type='submit') 참가
-        ul.navbar-nav.ml-auto
-          li.nav-item
-            a.nav-link(href='#') 세션 만들기
-          li.nav-item
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='/') Sunrin TV
+        form.form-inline
+          input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+        li.nav-menu
+          //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
+          //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
           if auth
-            a.nav-link(href='signout') 로그아웃
+            a(href='/signout' style='color: white; list-style-type: none;') 로그아웃
           else
-            a.nav-link(href='signin') 로그인
+            a(href='/signin' style='color: white; list-style-type: none;') 로그인
+
+    //- nav.navbar.navbar-light.bg-light.navbar-expand
+    //-   a.navbar-brand(href='') Sunrin TV
+    //-   button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+    //-     span.navbar-toggler-icon
+    //-   .collapse.navbar-collapse#navbarNav
+    //-     ul.navbar-nav.mx-auto
+    //-       form.form-inline
+    //-         input.form-control(placeholder='세션 코드를 입력하세요')
+    //-         button.btn(type='submit') 참가
+    //-     ul.navbar-nav.ml-auto
+    //-       li.nav-item
+    //-         a.nav-link(href='#') 세션 만들기
+    //-       li.nav-item
+    //-       if auth
+    //-         a.nav-link(href='signout') 로그아웃
+    //-       else
+    //-         a.nav-link(href='signin') 로그인
+      
     #carouselExampleIndicators.carousel.slide(data-ride='carousel')
       ol.carousel-indicators
         li.active(data-target='#carouselExampleIndicators' data-slide-to='0')
