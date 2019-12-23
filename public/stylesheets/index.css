@@ -17,4 +17,9 @@
 .card {
   display: inline-block;
   width: 40%;
+  margin: 3%;
+}
+
+.session-cards {
+  text-align: center;
 }
