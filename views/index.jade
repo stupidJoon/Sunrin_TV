@@ -12,19 +12,46 @@ html(lang='en')
     script(src='../javascripts/index.js')
     title Sunrin TV
   body
-    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-      .container
-        a.navbar-brand(href='/') Sunrin TV
-        form.form-inline
+    //- nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+    //-   .container
+    //-     a.navbar-brand(href='/') Sunrin TV
+    //-     form.form-inline
+    //-       input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
+    //-       button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+    //-     li.nav-menu
+    //-       //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
+    //-       //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
+    //-       if auth
+    //-         a(href='/signout' style='color: white; list-style-type: none;') 로그아웃
+    //-       else
+    //-         a(href='/signin' style='color: white; list-style-type: none;') 로그인
+
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand(href='#') Navbar
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='#')
+              | Home 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='#') Link
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              | Dropdown
+            .dropdown-menu(aria-labelledby='navbarDropdown')
+              a.dropdown-item(href='#') Action
+              a.dropdown-item(href='#') Another action
+              .dropdown-divider
+              a.dropdown-item(href='#') Something else here
+          li.nav-item
+            a.nav-link.disabled(href='#') Disabled
+        form.form-inline.my-2.my-lg-0
           input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
           button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
-        li.nav-menu
-          //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
-          //- a(href='/signout' style='color: white; list-style-type: none;') 세션 만들기
-          if auth
-            a(href='/signout' style='color: white; list-style-type: none;') 로그아웃
-          else
-            a(href='/signin' style='color: white; list-style-type: none;') 로그인
+
     #carouselExampleIndicators.carousel.slide(data-ride='carousel')
       ol.carousel-indicators
         li.active(data-target='#carouselExampleIndicators' data-slide-to='0')
