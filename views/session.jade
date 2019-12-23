@@ -25,12 +25,13 @@ html(lang='en')
                 label(for='sessionCode') 세션 코드
                 input#sessionCode.form-control(type='text', readonly='')
               .form-group
-                .custom-control.custom-radio.custom-control-inline
-                  input#customRadioInline1.custom-control-input(type='radio', name='customRadioInline1')
-                  label.custom-control-label(for='customRadioInline1') Toggle this custom radio
-                .custom-control.custom-radio.custom-control-inline
-                  input#customRadioInline2.custom-control-input(type='radio', name='customRadioInline1')
-                  label.custom-control-label(for='customRadioInline2') Or toggle this other custom radio
+                label 공개 설정
+                .custom-control.custom-radio
+                  input#customRadio1.custom-control-input(type='radio', name='customRadio')
+                  label.custom-control-label(for='customRadio1') Toggle this custom radio
+                .custom-control.custom-radio
+                  input#customRadio2.custom-control-input(type='radio', name='customRadio')
+                  label.custom-control-label(for='customRadio2') Or toggle this other custom radio
               if user
                 input#sessionNickName(type='hidden', value='#{user.id}')
               else
