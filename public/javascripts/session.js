@@ -228,6 +228,7 @@ $(document).ready(() => {
 });
 
 $(document).unload(() => {
+  alert("UNLOIADED");
   if (sessionType == 'caller' && accessModifier == 'public') {
     socket.emit('unload', { sessionId: SESSION_ID });
   }
