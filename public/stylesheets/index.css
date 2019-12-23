@@ -13,19 +13,3 @@
   backdrop-filter: blur(5px);
   border-radius: 10px;
 }
-
-.section {
-  width: 100vw;
-  height: 100vh;
-}
-
-.fullwidth {
-  height: 100vw;
-  display: block;
-}
-
-#dropdownarrow {
-  width: 100vw;
-  display: block;
-  text-align: center;
-}
