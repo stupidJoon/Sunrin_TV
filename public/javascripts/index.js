@@ -8,4 +8,10 @@ $(document).ready(() => {
     let sessionCode = $("#session").val().trim();
     location.href = 'session/' + sessionCode;
   });
+
+  $(".card").hover(function() {
+      $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+    }, function() {
+      $(this).removeClass('shadow-lg');
+    });
 });
