@@ -20,10 +20,12 @@
 }
 
 .fullwidth {
-  height: 100vh;
-  display: inline-block;
+  height: 100vw;
+  display: block;
 }
 
-.fullheight {
-  width: 100vh;
+#dropdownarrow {
+  width: 100vw;
+  display: block;
+  text-align: center;
 }
