@@ -28,10 +28,10 @@ html(lang='en')
                 label 공개 설정
                 .custom-control.custom-radio
                   input#customRadio1.custom-control-input(type='radio', name='customRadio')
-                  label.custom-control-label(for='customRadio1') Toggle this custom radio
+                  label.custom-control-label(for='customRadio1') 공개 세션
                 .custom-control.custom-radio
                   input#customRadio2.custom-control-input(type='radio', name='customRadio')
-                  label.custom-control-label(for='customRadio2') Or toggle this other custom radio
+                  label.custom-control-label(for='customRadio2') 비공개 세션
               if user
                 input#sessionNickName(type='hidden', value='#{user.id}')
               else
