@@ -13,3 +13,8 @@
   backdrop-filter: blur(5px);
   border-radius: 10px;
 }
+
+.card {
+  display: inline-block;
+  width: 40%;
+}
