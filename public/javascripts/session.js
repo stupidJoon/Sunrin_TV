@@ -206,6 +206,8 @@ $(document).ready(() => {
       $("#sessionTitle").text($("#sessionTitleInput").val());
       $("#sessionDetail").text($("#sessionDetailInput").val());
       nickName = $("#sessionNickName").val().trim();
+      let isPublic = ($("#customRadio1").val());
+      alert(isPublic);
       socket.emit('titleAndDetail', { sessionId: SESSION_ID, title: $("#sessionTitleInput").val(), detail: $("#sessionDetailInput").val() });
       startWebRTCForCaller();
     }
