@@ -78,8 +78,8 @@ html(lang='en')
           .card
             img.card-img-top(src="../images/_uM5_nG2ssc.jfif")
             .card-body
-              h5.card-title Test Title
-              p.card-text test text test text test text test text test text test text test text test text test text test text
+              h5.card-title #{public_session.title}
+              p.card-text #{public_session.description}
               p.card-text
                 small.text-muted #{public_session.started_datetime}
                 small.text-muted.float-right #{public_session.caller}
