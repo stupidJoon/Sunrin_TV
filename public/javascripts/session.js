@@ -11,7 +11,7 @@ const RTC_CONFIGURATION = {
 const SESSION_ID = location.href.split('/')[4];
 const socket = io.connect('');
 
-let sessionType;
+let callerOrCallee;
 let mediaStream;
 let nickName;
 let accessModifier;
@@ -20,8 +20,8 @@ let caller = [];
 let callee;
 
 socket.on('session_type', (sessionType) => {
-  this.sessionType = sessionType;
-  if (sessionType == 'caller') {
+  callerOrCallee = sessionType;
+  if (callerOrCallee == 'caller') {
     $("#session_init").modal({ backdrop: 'static', keyboard: false });
   }
   else {
@@ -34,7 +34,7 @@ socket.on('session_type', (sessionType) => {
     }
     startWebRTCForCallee();
   }
-  console.log('My Session Type:', sessionType);
+  console.log('My Session Type:', callerOrCallee);
 });
 socket.on('sendChat', (chatData) => {
   $("#liveChatConatiner").prepend('<p id="liveChat"><span class="userName">' + chatData['nickName'] + ': </span>' + chatData['message'] + '</p>')
@@ -228,7 +228,9 @@ $(document).ready(() => {
 });
 
 $(window).on('unload', () => {
-  socket.emit('unload', { sessionId: SESSION_ID });
+  if (callerOrCallee == 'caller' && accessModifier == 'public') {
+    socket.emit('unload', { sessionId: SESSION_ID });
+  }
 });
 
 // $(window).bind('beforeunload', () => {
