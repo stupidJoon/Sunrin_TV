@@ -39,3 +39,7 @@
 .float-right {
   float: right;
 }
+
+a {
+  color: black;
+}
