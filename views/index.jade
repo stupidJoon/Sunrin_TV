@@ -7,7 +7,7 @@ html(lang='en')
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js' integrity='sha256-47ID+V2VWUtAdqO9l5GlnnbwqLCUtputV73sG/rBZ3k=' crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
     link(rel='stylesheet' href='../stylesheets/index.css')
     script(src='../javascripts/index.js')
     title Sunrin TV
@@ -15,12 +15,14 @@ html(lang='en')
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       .container
         a.navbar-brand(href='/') Sunrin TV
+        li.nav-menu
           if auth
             li.nav-menu
             a(href='/signout' style='color: white; list-style-type: none;') 로그아웃
           else
             li.nav-menu
             a(href='/signin' style='color: white; list-style-type: none;') 로그인
+    header
       #carouselExampleIndicators.carousel.slide(data-ride='carousel')
         ol.carousel-indicators
           li.active(data-target='#carouselExampleIndicators' data-slide-to='0')
@@ -39,17 +41,17 @@ html(lang='en')
             .carousel-caption.d-none.d-md-block.blur
               h3.display-4 지금 시작하세요
               p.lead 하단의 세션 만들기 또는 세션 코드를 사용해 진행중인 세션에 참여하세요!
-          a.carousel-control-prev(href='#carouselExampleIndicators' role='button' data-slide='prev')
-            span.carousel-control-prev-icon(aria-hidden='true')
-            span.sr-only Previous
-          a.carousel-control-next(href='#carouselExampleIndicators' role='button' data-slide='next')
-            span.carousel-control-next-icon(aria-hidden='true')
-            span.sr-only Next
-        .container
-          button#create_session.btn.btn-primary.btn-lg.btn-block(type='button') 세션 만들기
-          h1 또는
-          .input-group.mb-3
-            input#session.form-control(type='text' placeholder='세션 코드를 입력해주세요')
-            .input-group-append
-              button#joinByCode.btn.btn-outline-secondary(type='button') 참여하기
-    .section HELLOTHISISANOTHERPAGE
+        a.carousel-control-prev(href='#carouselExampleIndicators' role='button' data-slide='prev')
+          span.carousel-control-prev-icon(aria-hidden='true')
+          span.sr-only Previous
+        a.carousel-control-next(href='#carouselExampleIndicators' role='button' data-slide='next')
+          span.carousel-control-next-icon(aria-hidden='true')
+          span.sr-only Next
+    section.py-5
+      .container
+        button#create_session.btn.btn-primary.btn-lg.btn-block(type='button') 세션 만들기
+        h1 또는
+        .input-group.mb-3
+          input#session.form-control(type='text' placeholder='세션 코드를 입력해주세요')
+          .input-group-append
+            button#joinByCode.btn.btn-outline-secondary(type='button') 참여하기

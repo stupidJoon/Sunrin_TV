@@ -12,8 +12,8 @@ const bcryptSettings = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // res.render(path.join(__dirname, '../views/index.jade'), { auth: req.isAuthenticated() });
-  res.sendFile(path.join(__dirname, '../views/index.html'));
+  res.render(path.join(__dirname, '../views/index.jade'), { auth: req.isAuthenticated() });
+  // res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 router.get('/signin', (req, res) => {
   res.render(path.join(__dirname, '../views/signin.jade'), { auth: req.query.auth_fail });
