@@ -1,4 +1,5 @@
 const xss = require('xss');
+const User = require('./passport/user.js');
 
 var exports = module.exports = {};
 
@@ -70,6 +71,9 @@ module.exports.on = (io) => {
     });
 
     socket.on('titleAndDetail', (titleAndDetail) => {
+      if (titleAndDetail['accessModifier'] == 'public') {
+        User.addPublicSession(titleAndDetail['sessionId'], titleAndDetail['id']);
+      }
       sessions[titleAndDetail['sessionId']]['callee'].forEach((value) => {
         value.emit('titleAndDetail', titleAndDetail);
       });
