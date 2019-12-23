@@ -55,11 +55,9 @@ html(lang='en')
           .input-group-append
             button#joinByCode.btn.btn-outline-secondary(type='button') 참여하기
     .session-cards.m-5
-      - var n = 0
-      while n < 100
+      - for (let i = 0; i < 100; i++)
         .card(style='width: 20rem;')
           img.card-img-top(src="../images/_uM5_nG2ssc.jfif")
           .card-body
             h5.card-title Test Title
             p.card-text test text
-        n++
