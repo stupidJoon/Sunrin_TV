@@ -10,6 +10,6 @@ $(document).ready(() => {
   });
 
   let sectionHeight = $("#firstSection").height();
-  let screenHeight = $(window).height();
+  let screenHeight = $(document).height();
   $("#dropdownarrow").height(screenHeight - sectionHeight);
 });
