@@ -72,3 +72,11 @@ module.exports.addPublicSession = (code, caller) => {
 module.exports.deletePublicSession = (code) => {
   pool.query('DELETE FROM public_session WHERE code=?', [code]);
 }
+module.exports.selectPublicSession = () => {
+  return new Promise((resolve, reject) => {
+    pool.query('SELECT * FROM public_session', (error, results, fields) => {
+      if (error) throw error;
+      resolve(results);
+    });
+  });
+}

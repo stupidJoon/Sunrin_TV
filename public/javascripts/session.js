@@ -232,11 +232,3 @@ $(window).on('unload', () => {
     socket.emit('unload', { sessionId: SESSION_ID });
   }
 });
-
-// $(window).bind('beforeunload', () => {
-//   // if (sessionType == 'caller' && accessModifier == 'public') {
-//   //   socket.emit('unload', { sessionId: SESSION_ID });
-//   // }
-//   socket.emit('unload', { sessionId: SESSION_ID });
-//   return '세션을 종료하시겠습니까?';
-// });
