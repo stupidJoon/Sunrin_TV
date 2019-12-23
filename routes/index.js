@@ -13,9 +13,8 @@ const bcryptSettings = {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Users.selectPublicSession().then((results) => {
-    console.log(results);
+    res.render(path.join(__dirname, '../views/index.jade'), { auth: req.isAuthenticated(), public_sessions: results });
   });
-  res.render(path.join(__dirname, '../views/index.jade'), { auth: req.isAuthenticated() });
   // res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 router.get('/signin', (req, res) => {

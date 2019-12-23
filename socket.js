@@ -72,7 +72,7 @@ module.exports.on = (io) => {
 
     socket.on('titleAndDetail', (titleAndDetail) => {
       if (titleAndDetail['accessModifier'] == 'public') {
-        User.addPublicSession(titleAndDetail['sessionId'], titleAndDetail['id']);
+        User.addPublicSession(titleAndDetail['sessionId'], titleAndDetail['id'], titleAndDetail['title'], titleAndDetail['detail']);
       }
       sessions[titleAndDetail['sessionId']]['callee'].forEach((value) => {
         value.emit('titleAndDetail', titleAndDetail);

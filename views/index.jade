@@ -73,13 +73,24 @@ html(lang='en')
             button#joinByCode.btn.btn-outline-secondary(type='button') 참여하기
     h3.text-center 스크롤을 내려 진행중인 공개된 세션들을 볼 수 있습니다!
     .session-cards.m-5
-      - for (let i = 0; i < 100; i++)
-        a(href="/")
+      each public_session in public_sessions
+        a(href="/session/#{public_session.code}")
           .card
             img.card-img-top(src="../images/_uM5_nG2ssc.jfif")
             .card-body
               h5.card-title Test Title
               p.card-text test text test text test text test text test text test text test text test text test text test text
               p.card-text
-                small.text-muted 12시간전에 시작함
-                small.text-muted.float-right asdf@asdf.com
+                small.text-muted #{public_session.started_datetime}
+                small.text-muted.float-right #{public_session.caller}
+
+      //- - for (let i = 0; i < 100; i++)
+      //-   a(href="/")
+      //-     .card
+      //-       img.card-img-top(src="../images/_uM5_nG2ssc.jfif")
+      //-       .card-body
+      //-         h5.card-title Test Title
+      //-         p.card-text test text test text test text test text test text test text test text test text test text test text
+      //-         p.card-text
+      //-           small.text-muted 12시간전에 시작함
+      //-           small.text-muted.float-right asdf@asdf.com

@@ -66,8 +66,8 @@ module.exports.idCheck = (id, cb) => {
   });
 }
 
-module.exports.addPublicSession = (code, caller) => {
-  pool.query('INSERT INTO public_session (code, caller) VALUES (?, ?)', [code, caller]);
+module.exports.addPublicSession = (code, caller, title, description) => {
+  pool.query('INSERT INTO public_session (code, caller, title, description) VALUES (?, ?, ?, ?)', [code, caller, title, description]);
 }
 module.exports.deletePublicSession = (code) => {
   pool.query('DELETE FROM public_session WHERE code=?', [code]);
