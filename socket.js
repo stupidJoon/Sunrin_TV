@@ -83,6 +83,10 @@ module.exports.on = (io) => {
       sessions[data['sessionId']]['callee'][data['index']].emit('titleAndDetail', data);
     });
 
+    socket.on('unload', (data) => {
+      User.deletePublicSession(data['sessionId']);
+    });
+
     socket.on('disconnect', () => {
       for (let [sessionId, session] of Object.entries(sessions)) {
         if (session['caller'] == socket) {

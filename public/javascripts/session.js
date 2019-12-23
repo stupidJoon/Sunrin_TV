@@ -14,6 +14,7 @@ const socket = io.connect('');
 let sessionType;
 let mediaStream;
 let nickName;
+let accessModifier;
 
 let caller = [];
 let callee;
@@ -206,7 +207,7 @@ $(document).ready(() => {
       $("#sessionTitle").text($("#sessionTitleInput").val());
       $("#sessionDetail").text($("#sessionDetailInput").val());
       nickName = $("#sessionNickName").val().trim();
-      let accessModifier = $("input[name=accessRadio]:checked").val();
+      accessModifier = $("input[name=accessRadio]:checked").val();
       socket.emit('titleAndDetail', { sessionId: SESSION_ID, title: $("#sessionTitleInput").val(), detail: $("#sessionDetailInput").val(), accessModifier: accessModifier, id: nickName });
       startWebRTCForCaller();
     }
@@ -224,4 +225,10 @@ $(document).ready(() => {
     socket.emit('sendChat', { sessionId: SESSION_ID, nickName: nickName, message: $("#chatBox").val().trim() });
     $("#chatBox").val('');
   });
+});
+
+$(document).unload(() => {
+  if (sessionType == 'caller' && accessModifier == 'public') {
+    socket.emit('unload', { sessionId: SESSION_ID });
+  }
 });
