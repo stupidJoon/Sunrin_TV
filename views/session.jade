@@ -27,10 +27,10 @@ html(lang='en')
               .form-group
                 label 공개 설정
                 .custom-control.custom-radio
-                  input#customRadio1.custom-control-input.active(type='radio', name='accessRadio' checked='')
+                  input#customRadio1.custom-control-input.active(type='radio', name='public' checked='')
                   label.custom-control-label(for='customRadio1') 공개 세션
                 .custom-control.custom-radio
-                  input#customRadio2.custom-control-input(type='radio', name='accessRadio')
+                  input#customRadio2.custom-control-input(type='radio', name='private')
                   label.custom-control-label(for='customRadio2') 비공개 세션
               if user
                 input#sessionNickName(type='hidden', value='#{user.id}')
