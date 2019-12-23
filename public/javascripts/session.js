@@ -227,7 +227,7 @@ $(document).ready(() => {
   });
 });
 
-$(window).unload(() => {
+$(window).on('unload', () => {
   socket.emit('unload', { sessionId: SESSION_ID });
 });
 
